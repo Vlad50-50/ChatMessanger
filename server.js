@@ -2,6 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const { Server } = require("socket.io");
+const db = require("./database")
 
 const chatHtmlFile = fs.readFileSync(path.join(__dirname,"static","shat.htm"));
 const styleCssFile = fs.readFileSync(path.join(__dirname,"static","style.css"));
@@ -25,4 +26,7 @@ const io = new Server(server);
 
 io.on("connection", (socket) => {
     console.log("A user connected. ID = " + socket.id);
+    socket.on("new_message",(messge) => {
+        io.emit("messege",messge);
+    })
 })
