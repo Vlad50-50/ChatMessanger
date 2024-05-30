@@ -1,19 +1,48 @@
-const socket = io();
+const socket = io({
+    auth: {
+        cookie: document.cookie
+    }
+});
 
-let form = document.getElementById("fotmMsg");
-let inp = document.getElementById("inputMsg");
+let form = document.getElementById("formMsg");
+let input = document.getElementById("inputMsg");
+let myId = document.cookie.split("=")[1].split(".")[0];
 
-form.addEventListener("submit",event => {
+form.addEventListener("submit", event => {
     event.preventDefault();
-    if (inp.value){
-        socket.emit("new_message",inp.value);
-        inp.value = ""
-;    }
+    if (input.value) {
+        socket.emit("new_message", input.value);
+        createMyMsg({
+            content: input.value
+        });
+        input.value = "";
+    }
 })
 
-socket.on("messege", msg => {
+socket.on("message", msg => {
+    createMsg(msg)
+})
+
+function createMsg(msg) {
     let item = document.createElement("li");
-    item.textContent = msg;
+    if (msg.userId == myId) {
+        item.classList.add("my")
+    }
+    item.textContent = msg.content;
     document.getElementById("messages").appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
+}
+
+function createMyMsg(msg) {
+    let item = document.createElement("li");
+    item.classList.add("my");
+    item.textContent = msg.content;
+    document.getElementById("messages").appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+socket.on("all_messages", msgArray => {
+    msgArray.forEach(msg => {
+        createMsg(msg);
+    })
 })
