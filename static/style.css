@@ -1,11 +1,11 @@
-:root {
-    --color-primary: rgb(48, 79, 254);
-    --color-primary-dark: rgb(36, 59, 190);
-    --color-white: white;
-    --color-orange: rgb(185, 127, 19);
-    --color-orange-dark: rgb(144, 104, 29);
+:root{
+    --color-primary:rgb(141, 236, 180);
+    --color-primary-dark:rgb(65, 176, 110);
+    --color-white:rgb(255, 245, 224);
+    --color-orange:rgb(220, 107, 25);
+    --color-orange-dark:rgb(143, 69, 16);
     --header-height: 80px;
-    --color-danger: red;
+    --color-dager:red;
 }
 
 * {

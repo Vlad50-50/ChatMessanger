@@ -55,7 +55,9 @@ loginForm?.addEventListener("submit", (event) => {
             span.innerHTML = xhr.response.error;
         } else {
             const token = xhr.response.token;
-            document.cookie = `token=${token}`;
+            let date = new Date();
+            date.setTime(date.getTime() + 7 * 24 * 60 * 60 * 1000);
+            document.cookie = `token=${token};expires=${date.toString()};`;
             window.location.assign("/");
         }
     }

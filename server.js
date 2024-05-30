@@ -140,11 +140,10 @@ io.on("connection", async (socket) => {
         db.addMessage(message, userId);
         let obj = {
             username: username,
-            message: message,
+            content: message,
             userId: userId,
-            own: false
         }
-        io.emit("message", obj);
+        socket.broadcast.emit("message", obj);
     })
 })
 
