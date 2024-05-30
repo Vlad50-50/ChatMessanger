@@ -37,18 +37,11 @@ dbWrapper.open({
     }
 });
 
-async function t() {
-    console.log(await db.all( `
-SELECT message.id AS msg_id, author_id, content, login
-FROM message
-JOIN user ON message.author_id = user.id;
-`));
-}
 
 module.exports = {
     getMessages: async () => {
         return await db.all(`
-            SELECT id AS msg_id, author_id, content, login FROM message 
+            SELECT message.id AS msg_id, author_id, content, login FROM message 
             JOIN user ON message.author_id = user.id
         `)
     },
