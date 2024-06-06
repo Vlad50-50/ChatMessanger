@@ -171,3 +171,24 @@ p a:hover {
     justify-self: end;
     background: var(--color-orange);
 }
+
+@media (max-width: 700px) {
+    .auth-form-container {
+        gap: 0;
+        width: auto;
+        align-items: start;
+    }
+}
+
+@media (max-width: 380px) {
+    .auth-form-container {
+        gap: 0;
+        width: auto;
+        align-items: start;
+        padding: 10px;
+        margin: 5px;
+    }
+    .auth-form-btn {
+        margin-top: 5px;
+    }
+}

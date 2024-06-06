@@ -37,8 +37,7 @@ registerForm?.addEventListener("submit", (event) => {
 loginForm?.addEventListener("submit", (event) => {
     event.preventDefault();
     span.innerHTML = null;
-    const {login, password} = loginForm; // delete confirm password, and change loginform
-    // delete condition for check password and confirm password
+    const {login, password} = loginForm;
 
     const user = JSON.stringify({
         login: login.value,
@@ -46,7 +45,7 @@ loginForm?.addEventListener("submit", (event) => {
     })
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/api/login"); // change api -> login
+    xhr.open("POST", "/api/login");
     xhr.responseType = "json";
     xhr.send(user);
     xhr.onload = () => {
